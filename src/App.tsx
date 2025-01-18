@@ -1,11 +1,15 @@
 import React from 'react';
 import './App.css';
+import FloatingAddBtn from 'components/FloatingAddBtn';
+import Header from 'components/Header';
+import NightModeToggleBtn from 'components/NightModeToggleBtn';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <h1>test</h1>
-      <div>안녕</div>
+      <Header />
+      <FloatingAddBtn />
+      <NightModeToggleBtn />
     </div>
   );
 };
