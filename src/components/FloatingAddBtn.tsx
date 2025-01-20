@@ -1,4 +1,5 @@
 import React from 'react';
+import useModalStore from 'stores/useModalStore';
 import styled from 'styled-components';
 
 const publicUrl = process.env.PUBLIC_URL;
@@ -11,7 +12,9 @@ const StyledFloatingAddBtn = styled.button`
   background-color: #6c63ff;
   border-radius: 50%;
   border: 2px solid #6c63ff;
-  // position: absolute;
+  position: absolute;
+  bottom: 4rem;
+  right: 0;
   cursor: pointer;
   transition: 0.3s;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -28,8 +31,9 @@ const StyledFloatingAddBtn = styled.button`
 `;
 
 const FloatingAddBtn: React.FC = () => {
+  const { openModal } = useModalStore();
   return (
-    <StyledFloatingAddBtn>
+    <StyledFloatingAddBtn onClick={openModal}>
       <img src={`${publicUrl}/images/plus.svg`} alt="plus" />
     </StyledFloatingAddBtn>
   );

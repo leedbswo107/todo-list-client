@@ -1,6 +1,7 @@
 // import useModeSwitch from 'hooks/useModeSwitch';
-import React, { useState } from 'react';
+import useNightModeStore from 'stores/useNightModeStore';
 import styled from 'styled-components';
+
 const publicUrl = process.env.PUBLIC_URL;
 
 const StyledNightModeToggleBtn = styled.button`
@@ -24,12 +25,14 @@ const StyledNightModeToggleBtn = styled.button`
   }
 `;
 const NightModeToggleBtn: React.FC = () => {
-  const [mode, setMode] = useState(false);
+  const { isNightMode, toggleNightMode } = useNightModeStore();
   return (
-    <StyledNightModeToggleBtn onClick={() => setMode(!mode)}>
+    <StyledNightModeToggleBtn onClick={toggleNightMode}>
       <img
         src={
-          mode ? `${publicUrl}/images/moon.svg` : `${publicUrl}/images/sun.svg`
+          isNightMode
+            ? `${publicUrl}/images/moon.svg`
+            : `${publicUrl}/images/sun.svg`
         }
         alt="moon"
       />
