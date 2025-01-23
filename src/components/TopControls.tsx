@@ -3,10 +3,12 @@ import styled from 'styled-components';
 import SearchBar from './SearchBar';
 import NightModeToggleBtn from './NightModeToggleBtn';
 import Category from './Category';
+import LoginBtn from './LoginBtn';
 
 const StyledTopControls = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 16px;
   padding-top: 18px;
 `;
 const TopControls: React.FC = () => {
@@ -14,6 +16,7 @@ const TopControls: React.FC = () => {
     <StyledTopControls>
       <SearchBar />
       <Category />
+      <LoginBtn />
       <NightModeToggleBtn />
     </StyledTopControls>
   );

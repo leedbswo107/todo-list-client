@@ -5,16 +5,23 @@ import Header from 'components/Header';
 import TopControls from 'components/TopControls';
 import TodoListArea from 'components/TodoListArea';
 import CreateTodo from 'components/CreateTodo';
+import SignInUp from 'components/SignInUp';
+import { styled } from 'styled-components';
 
+const StyledApp = styled.div`
+  height: 100vh;
+  padding-top: 40px;
+`;
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <StyledApp className="App">
       <Header />
       <TopControls />
+      <SignInUp />
       <TodoListArea />
       <FloatingAddBtn />
       <CreateTodo />
-    </div>
+    </StyledApp>
   );
 };
 

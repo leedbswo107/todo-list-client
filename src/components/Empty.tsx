@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 const StyledEmpty = styled.div`
   display: flex;
   flex-direction: column-reverse;
+  padding-top: 4rem;
   gap: 1rem;
   align-items: center;
 `;

@@ -1,6 +1,12 @@
-// import useModeSwitch from 'hooks/useModeSwitch';
 import useNightModeStore from 'stores/useNightModeStore';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+const bgColor = localStorage.getItem('isNightMode');
+const GlobalStyle = createGlobalStyle<{ bgColor: string }>`
+  body {
+    background-color: ${bgColor === 'true' ? 'black' : 'white'};
+  }
+`;
 
 const publicUrl = process.env.PUBLIC_URL;
 
@@ -27,16 +33,19 @@ const StyledNightModeToggleBtn = styled.button`
 const NightModeToggleBtn: React.FC = () => {
   const { isNightMode, toggleNightMode } = useNightModeStore();
   return (
-    <StyledNightModeToggleBtn onClick={toggleNightMode}>
-      <img
-        src={
-          isNightMode
-            ? `${publicUrl}/images/moon.svg`
-            : `${publicUrl}/images/sun.svg`
-        }
-        alt="moon"
-      />
-    </StyledNightModeToggleBtn>
+    <>
+      <GlobalStyle bgColor={bgColor} />
+      <StyledNightModeToggleBtn onClick={toggleNightMode}>
+        <img
+          src={
+            isNightMode
+              ? `${publicUrl}/images/moon.svg`
+              : `${publicUrl}/images/sun.svg`
+          }
+          alt="moon"
+        />
+      </StyledNightModeToggleBtn>
+    </>
   );
 };
 

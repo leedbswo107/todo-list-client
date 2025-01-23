@@ -1,10 +1,11 @@
 import useTodo from 'hooks/useTodo';
 import React, { useState } from 'react';
+import useEditModalStore from 'stores/useEditModalStore';
 import useModalStore from 'stores/useModalStore';
 import useUserStore from 'stores/useUserStore';
 import { styled } from 'styled-components';
 
-const StyledCreateTodo = styled.div`
+const StyledEditTodo = styled.div`
   display: flex;
   justify-content: center;
   position: fixed;
@@ -60,21 +61,22 @@ const StyledCreateTodo = styled.div`
     background-color: #534cc2;
   }
 `;
-const CreateTodo: React.FC = () => {
-  const { modalStatus, closeModal } = useModalStore();
-  const { create } = useTodo();
+const EditTodo: React.FC = () => {
+  const { editModalStatus, closeModal } = useEditModalStore();
+  const { edit } = useTodo();
+  // const { userId } = useUserStore();
   const user = useUserStore((state) => state.user);
   const [content, setContent] = useState('');
   const handleTodoSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    create(user.id, content);
+    edit(user.id, content);
     closeModal();
   };
-  if (!modalStatus) return null;
+  if (!editModalStatus) return null;
   return (
-    <StyledCreateTodo>
+    <StyledEditTodo>
       <div className="createModal">
-        <h3>NEW NOTE</h3>
+        <h3>EDIT NOTE</h3>
         <form onSubmit={handleTodoSubmit}>
           <input
             type="text"
@@ -96,8 +98,8 @@ const CreateTodo: React.FC = () => {
           </div>
         </form>
       </div>
-    </StyledCreateTodo>
+    </StyledEditTodo>
   );
 };
 
-export default CreateTodo;
+export default EditTodo;
