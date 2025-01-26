@@ -1,6 +1,7 @@
 import useTodo from 'hooks/useTodo';
 import React, { useState } from 'react';
 import useEditModalStore from 'stores/useEditModalStore';
+import useEditTodoStore from 'stores/useEditTodoStore';
 import useModalStore from 'stores/useModalStore';
 import useUserStore from 'stores/useUserStore';
 import { styled } from 'styled-components';
@@ -64,12 +65,13 @@ const StyledEditTodo = styled.div`
 const EditTodo: React.FC = () => {
   const { editModalStatus, closeModal } = useEditModalStore();
   const { edit } = useTodo();
+  const { todoId, content } = useEditTodoStore();
   // const { userId } = useUserStore();
-  const user = useUserStore((state) => state.user);
-  const [content, setContent] = useState('');
+  // const user = useUserStore((state) => state.user);
+  const [editContent, setEditContent] = useState('');
   const handleTodoSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    edit(user.id, content);
+    edit(todoId, editContent);
     closeModal();
   };
   if (!editModalStatus) return null;
@@ -82,7 +84,8 @@ const EditTodo: React.FC = () => {
             type="text"
             className="inputTodo"
             placeholder="Input youre note..."
-            onChange={(e) => setContent(e.target.value)}
+            defaultValue={content}
+            onChange={(e) => setEditContent(e.target.value)}
           />
           <div className="buttonArea">
             <button className="cancelBtn" onClick={closeModal}>
@@ -93,7 +96,7 @@ const EditTodo: React.FC = () => {
               className="submitBtn"
               onSubmit={handleTodoSubmit}
             >
-              APPLY
+              EDIT
             </button>
           </div>
         </form>

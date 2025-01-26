@@ -1,7 +1,7 @@
 import React from 'react';
-import useLoggedInStore from 'stores/useLoggedInStore';
 import useLoginModalStore from 'stores/useLoginModalStore';
 import useModalStore from 'stores/useModalStore';
+import useUserStore from 'stores/useUserStore';
 import styled from 'styled-components';
 
 const publicUrl = process.env.PUBLIC_URL;
@@ -36,9 +36,9 @@ const StyledFloatingAddBtn = styled.button`
 const FloatingAddBtn: React.FC = () => {
   const { openModal } = useModalStore();
   const { openLoginModal } = useLoginModalStore();
-  const { isLoggedIn } = useLoggedInStore();
+  const user = useUserStore((state) => state.user);
   return (
-    <StyledFloatingAddBtn onClick={isLoggedIn ? openModal : openLoginModal}>
+    <StyledFloatingAddBtn onClick={user ? openModal : openLoginModal}>
       <img src={`${publicUrl}/images/plus.svg`} alt="plus" />
     </StyledFloatingAddBtn>
   );

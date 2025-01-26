@@ -7,6 +7,7 @@ import TodoListArea from 'components/TodoListArea';
 import CreateTodo from 'components/CreateTodo';
 import SignInUp from 'components/SignInUp';
 import { styled } from 'styled-components';
+import EditTodo from 'components/EditTodo';
 
 const StyledApp = styled.div`
   height: 100vh;
@@ -21,6 +22,7 @@ const App: React.FC = () => {
       <TodoListArea />
       <FloatingAddBtn />
       <CreateTodo />
+      <EditTodo />
     </StyledApp>
   );
 };

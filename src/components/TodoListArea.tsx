@@ -1,3 +1,4 @@
+import useAuth from 'hooks/useAuth';
 import useTodo from 'hooks/useTodo';
 import React, { useEffect, useState } from 'react';
 import useUserStore from 'stores/useUserStore';
@@ -23,20 +24,23 @@ interface TodoItem {
 const TodoListArea: React.FC = () => {
   const [data, setData] = useState<TodoItem[]>([]);
   const { load } = useTodo();
-  const user = useUserStore((state) => state.user);
-
+  const { fetchUserInfo } = useAuth();
+  const user = useUserStore((state) => state.setUser);
   useEffect(() => {
     const fetchData = async () => {
-      if (!user) {
+      await fetchUserInfo();
+      const updatedUser = useUserStore.getState().user;
+      if (!updatedUser) {
         setData([]);
         return;
       }
-      try {
-        const list: TodoItem[] = await load(user.id);
-        console.log('Loaded list:', list);
-        setData(list);
-      } catch (error) {
-        console.error('Error loading todos:', error);
+      if (updatedUser) {
+        try {
+          const list: TodoItem[] = await load(updatedUser.id);
+          setData(list);
+        } catch (error) {
+          console.error('Error loading todos:', error);
+        }
       }
     };
     fetchData();

@@ -1,8 +1,9 @@
 import React from 'react';
+import useNightModeStore from 'stores/useNightModeStore';
 import styled from 'styled-components';
 
 const publicUrl = process.env.PUBLIC_URL;
-const StyledSearchBar = styled.form`
+const StyledSearchBar = styled.form<{ isNightMode: boolean }>`
   display: flex;
   width: 536px;
   height: 38px;
@@ -34,6 +35,7 @@ const StyledSearchBar = styled.form`
     flex: 1;
     outline: none;
     background: none;
+    color: ${({ isNightMode }) => (isNightMode ? 'white' : '#6c63ff')};
   }
   input::placeholder {
     color: #c3c1e5;
@@ -55,8 +57,9 @@ const StyledSearchBar = styled.form`
 `;
 
 const SearchBar: React.FC = () => {
+  const { isNightMode } = useNightModeStore();
   return (
-    <StyledSearchBar>
+    <StyledSearchBar isNightMode={isNightMode}>
       <label>Note</label>
       <input
         type="search"

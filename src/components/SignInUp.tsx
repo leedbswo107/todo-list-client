@@ -3,7 +3,8 @@ import { styled } from 'styled-components';
 import LoginSignUpForm from './LoginSignUpForm';
 import useAuth from '../hooks/useAuth';
 import useLoginModalStore from 'stores/useLoginModalStore';
-const StyledSignInUp = styled.div`
+import useNightModeStore from 'stores/useNightModeStore';
+const StyledSignInUp = styled.div<{ isNightMode: boolean }>`
   position: fixed;
   left: 0;
   width: 100%;
@@ -19,7 +20,9 @@ const StyledSignInUp = styled.div`
     position: absolute;
     top: 10%;
     padding: 16px;
-    background-color: #fafafa;
+    // background-color: #fafafa;
+    background-color: ${({ isNightMode }) =>
+      isNightMode ? 'gray' : '#fafafa'};
     margin: 0 auto;
     width: 500px;
     border-radius: 5px;
@@ -29,7 +32,9 @@ const StyledSignInUp = styled.div`
   }
   .innerCon {
     padding: 32px 16px;
-    background-color: white;
+    background-color: ${({ isNightMode }) =>
+      isNightMode ? 'black' : '#fafafa'};
+    // background-color: white;
     border: 1px solid #eaeaea;
   }
   .innerTitle {
@@ -41,7 +46,9 @@ const StyledSignInUp = styled.div`
     position: relative;
   }
   h2 .test {
-    background-color: white;
+    // background-color: white;
+    background-color: ${({ isNightMode }) =>
+      isNightMode ? 'black' : '#fafafa'};
     position: relative;
     padding: 0 4px;
     z-index: 10;
@@ -60,7 +67,8 @@ const StyledSignInUp = styled.div`
     justify-content: center;
     align-items: center;
     gap: 8px;
-    background-color: white;
+    background-color: ${({ isNightMode }) =>
+      isNightMode ? 'black' : '#fafafa'};
     border: 1px solid #eaeaea;
     padding: 16px 0;
   }
@@ -73,8 +81,9 @@ const StyledSignInUp = styled.div`
 `;
 
 const SignInUp: React.FC = () => {
-  const { login, signUp, loading } = useAuth();
+  const { login, signUp } = useAuth();
   const { modalStatus, closeLoginModal } = useLoginModalStore();
+  const { isNightMode } = useNightModeStore();
   const [test, setTest] = useState(true);
   const handleFormSubmit = (data: {
     userId: string;
@@ -89,7 +98,7 @@ const SignInUp: React.FC = () => {
   };
   if (!modalStatus) return null;
   return (
-    <StyledSignInUp>
+    <StyledSignInUp isNightMode={isNightMode}>
       <div className="container">
         <div className="innerCon">
           <h2 className="innerTitle">

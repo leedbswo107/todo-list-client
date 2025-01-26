@@ -1,5 +1,7 @@
 import useTodo from 'hooks/useTodo';
 import React from 'react';
+import useEditModalStore from 'stores/useEditModalStore';
+import useEditTodoStore from 'stores/useEditTodoStore';
 import { styled } from 'styled-components';
 
 interface TodoListCardProps {
@@ -40,16 +42,24 @@ const StyledTodoListCard = styled.li`
 `;
 const TodoListCard: React.FC<TodoListCardProps> = ({ content, id }) => {
   const { remove } = useTodo();
+  const { openModal } = useEditModalStore();
+  const { setTodoId, setContent } = useEditTodoStore();
   const deleteTodo = () => {
     console.log('id???', id);
     remove(id);
+  };
+  const editTodo = () => {
+    console.log('edit id', id);
+    setTodoId(id);
+    setContent(content);
+    openModal();
   };
   return (
     <StyledTodoListCard>
       <input type="checkbox" />
       <div>{content}</div>
-      <button className="edit" onClick={deleteTodo}>
-        <img src={`${publicUrl}/images/edit.svg`} alt="delete" />
+      <button className="edit" onClick={editTodo}>
+        <img src={`${publicUrl}/images/edit.svg`} alt="edit" />
       </button>
       <button className="delete" onClick={deleteTodo}>
         <img src={`${publicUrl}/images/trash.svg`} alt="delete" />

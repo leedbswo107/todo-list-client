@@ -18,18 +18,20 @@ const useTodo = () => {
         { content },
         { withCredentials: true },
       );
+      window.location.reload();
       console.log('Response:', res.data);
-    } catch (err) {
+    } catch (err: object) {
       console.error('Error:', err.response?.data || err.message);
     }
   };
-  const edit = async (id: number, content: string) => {
+  const edit = async (id: string, content: string) => {
     try {
       const res = await axios.post(
         `http://localhost:4000/todo/${id}`,
         { content },
         { withCredentials: true },
       );
+      window.location.reload();
       console.log(res);
     } catch (err) {
       console.error(err);
@@ -38,6 +40,7 @@ const useTodo = () => {
   const remove = async (id: string) => {
     try {
       const res = await axios.delete(`http://localhost:4000/todo/${id}`);
+      window.location.reload();
       console.log(res);
     } catch (err) {
       console.error(err);

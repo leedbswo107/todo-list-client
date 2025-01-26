@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import useLoginModalStore from 'stores/useLoginModalStore';
-
-import axios from 'axios';
 import { styled } from 'styled-components';
 import useAuth from 'hooks/useAuth';
-import useLoggedInStore from 'stores/useLoggedInStore';
 import useCheckLogin from 'hooks/useCheckLogin';
 import useUserStore from 'stores/useUserStore';
 
@@ -34,7 +30,7 @@ const StyledLoginBtn = styled.button`
 const LoginBtn: React.FC = () => {
   const { openLoginModal } = useLoginModalStore();
   const { logout } = useAuth();
-  const { isLoggedIn } = useLoggedInStore();
+  const user = useUserStore((state) => state.user);
   const clearUser = useUserStore((state) => state.clearUser);
   const logoutProcess = () => {
     logout();
@@ -42,8 +38,8 @@ const LoginBtn: React.FC = () => {
   };
   useCheckLogin();
   return (
-    <StyledLoginBtn onClick={isLoggedIn ? logoutProcess : openLoginModal}>
-      {isLoggedIn ? 'LOGOUT' : 'LOGIN'}
+    <StyledLoginBtn onClick={user ? logoutProcess : openLoginModal}>
+      {user ? 'LOGOUT' : 'LOGIN'}
       {/* <img src={`${publicUrl}/images/user.svg`} alt="login" /> */}
     </StyledLoginBtn>
   );
