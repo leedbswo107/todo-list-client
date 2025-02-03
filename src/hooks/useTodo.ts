@@ -20,8 +20,8 @@ const useTodo = () => {
       );
       window.location.reload();
       console.log('Response:', res.data);
-    } catch (err: object) {
-      console.error('Error:', err.response?.data || err.message);
+    } catch (error: any) {
+      console.error('Error:', error.response?.data || error.message);
     }
   };
   const edit = async (id: string, content: string) => {
