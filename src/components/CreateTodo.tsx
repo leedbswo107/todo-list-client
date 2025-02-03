@@ -1,10 +1,11 @@
 import useTodo from 'hooks/useTodo';
 import React, { useState } from 'react';
 import useModalStore from 'stores/useModalStore';
+import useNightModeStore from 'stores/useNightModeStore';
 import useUserStore from 'stores/useUserStore';
 import { styled } from 'styled-components';
 
-const StyledCreateTodo = styled.div`
+const StyledCreateTodo = styled.div<{ isNightMode: boolean }>`
   display: flex;
   justify-content: center;
   position: fixed;
@@ -27,7 +28,9 @@ const StyledCreateTodo = styled.div`
     border: 1px solid #534cc2;
     border-radius: 16px;
     padding: 18px 36px;
-    background-color: white;
+    background-color: ${({ isNightMode }) =>
+      isNightMode ? '#252525' : 'white'};
+    color: ${({ isNightMode }) => (isNightMode ? 'white' : 'black')};
     top: 10%;
     z-index: 100;
   }
@@ -35,6 +38,9 @@ const StyledCreateTodo = styled.div`
     border: 1px solid #534cc2;
     border-radius: 5px;
     width: 100%;
+    background-color: ${({ isNightMode }) =>
+      isNightMode ? '#252525' : 'white'};
+    color: ${({ isNightMode }) => (isNightMode ? 'white' : 'black')};
     padding: 8px 16px;
   }
   .buttonArea {
@@ -65,6 +71,7 @@ const CreateTodo: React.FC = () => {
   const { create } = useTodo();
   const user = useUserStore((state) => state.user);
   const [content, setContent] = useState('');
+  const { isNightMode } = useNightModeStore();
   const handleTodoSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     create(user.id, content);
@@ -72,7 +79,7 @@ const CreateTodo: React.FC = () => {
   };
   if (!modalStatus) return null;
   return (
-    <StyledCreateTodo>
+    <StyledCreateTodo isNightMode={isNightMode}>
       <div className="createModal">
         <h3>NEW NOTE</h3>
         <form onSubmit={handleTodoSubmit}>

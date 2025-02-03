@@ -9,7 +9,6 @@ const StyledSignInUp = styled.div<{ isNightMode: boolean }>`
   left: 0;
   width: 100%;
   height: 100vh;
-  border: 1px solid #ccc;
   z-index: 10;
   // position: absolute;
   backdrop-filter: blur(5px);

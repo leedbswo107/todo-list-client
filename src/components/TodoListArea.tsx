@@ -53,7 +53,7 @@ const TodoListArea: React.FC = () => {
           <TodoListCard
             content={e.content}
             id={e._id}
-            userId={e.userId}
+            // userId={e.userId}
             key={e._id}
           />
         ))

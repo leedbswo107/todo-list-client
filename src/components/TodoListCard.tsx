@@ -25,7 +25,11 @@ const StyledTodoListCard = styled.li`
     border: none;
     outline: none;
     cursor: pointer;
-    // transition: 0.3s;
+    opacity: 0;
+    transition: 0.3s;
+  }
+  &:hover > button {
+    opacity: 1;
   }
   button img {
     width: 18px;
@@ -44,12 +48,8 @@ const TodoListCard: React.FC<TodoListCardProps> = ({ content, id }) => {
   const { remove } = useTodo();
   const { openModal } = useEditModalStore();
   const { setTodoId, setContent } = useEditTodoStore();
-  const deleteTodo = () => {
-    console.log('id???', id);
-    remove(id);
-  };
+  const deleteTodo = () => remove(id);
   const editTodo = () => {
-    console.log('edit id', id);
     setTodoId(id);
     setContent(content);
     openModal();
