@@ -11,7 +11,7 @@ interface TodoListCardProps {
 const publicUrl = process.env.PUBLIC_URL;
 const StyledTodoListCard = styled.li`
   display: flex;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #6c63ff;
   padding: 10px 25px;
   input {
     margin-right: 10px;
@@ -57,7 +57,7 @@ const TodoListCard: React.FC<TodoListCardProps> = ({ content, id }) => {
   return (
     <StyledTodoListCard>
       <input type="checkbox" />
-      <div>{content}</div>
+      <div className="kanit-medium">{content}</div>
       <button className="edit" onClick={editTodo}>
         <img src={`${publicUrl}/images/edit.svg`} alt="edit" />
       </button>

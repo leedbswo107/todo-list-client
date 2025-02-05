@@ -12,7 +12,7 @@ const publicUrl = process.env.PUBLIC_URL;
 const Empty: React.FC = () => {
   return (
     <StyledEmpty>
-      <h3>Opps...</h3>
+      <h3 className="kanit-medium">Opps...</h3>
       <img src={`${publicUrl}/images/empty.svg`} alt="empty" />
     </StyledEmpty>
   );

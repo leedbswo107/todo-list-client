@@ -21,7 +21,7 @@ const StyledSignInUp = styled.div<{ isNightMode: boolean }>`
     padding: 16px;
     // background-color: #fafafa;
     background-color: ${({ isNightMode }) =>
-      isNightMode ? 'gray' : '#fafafa'};
+      isNightMode ? '#252525' : '#fafafa'};
     margin: 0 auto;
     width: 500px;
     border-radius: 5px;
@@ -32,9 +32,14 @@ const StyledSignInUp = styled.div<{ isNightMode: boolean }>`
   .innerCon {
     padding: 32px 16px;
     background-color: ${({ isNightMode }) =>
-      isNightMode ? 'black' : '#fafafa'};
+      isNightMode ? '#252525' : '#fafafa'};
     // background-color: white;
     border: 1px solid #eaeaea;
+  }
+  .mainTitle {
+    color: #6c63ff;
+    font-size: 64px;
+    padding-bottom: 16px;
   }
   .innerTitle {
     margin-bottom: 16px;
@@ -47,7 +52,7 @@ const StyledSignInUp = styled.div<{ isNightMode: boolean }>`
   h2 .test {
     // background-color: white;
     background-color: ${({ isNightMode }) =>
-      isNightMode ? 'black' : '#fafafa'};
+      isNightMode ? '#252525' : '#fafafa'};
     position: relative;
     padding: 0 4px;
     z-index: 10;
@@ -67,7 +72,7 @@ const StyledSignInUp = styled.div<{ isNightMode: boolean }>`
     align-items: center;
     gap: 8px;
     background-color: ${({ isNightMode }) =>
-      isNightMode ? 'black' : '#fafafa'};
+      isNightMode ? '#252525' : '#fafafa'};
     border: 1px solid #eaeaea;
     padding: 16px 0;
   }
@@ -100,8 +105,11 @@ const SignInUp: React.FC = () => {
     <StyledSignInUp isNightMode={isNightMode}>
       <div className="container">
         <div className="innerCon">
+          <h2 className="mainTitle cookie-regular">todo</h2>
           <h2 className="innerTitle">
-            <span className="test">{test ? 'Login' : 'Sign Up'}</span>{' '}
+            <span className="test kanit-medium">
+              {test ? 'Login' : 'Sign Up'}
+            </span>{' '}
             <span className="test2"></span>
           </h2>
           {test ? (
@@ -120,7 +128,7 @@ const SignInUp: React.FC = () => {
             />
           )}
         </div>
-        <div className="bottom">
+        <div className="bottom kanit-medium">
           <span>{test ? '계정이 없으신가요?' : '계정이 이미 있으신가요?'}</span>
           <button onClick={() => setTest(!test)}>
             {test ? '가입하기' : '로그인하기'}

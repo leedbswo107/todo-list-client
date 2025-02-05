@@ -38,7 +38,10 @@ const LoginBtn: React.FC = () => {
   };
   useCheckLogin();
   return (
-    <StyledLoginBtn onClick={user ? logoutProcess : openLoginModal}>
+    <StyledLoginBtn
+      className="kanit-regular"
+      onClick={user ? logoutProcess : openLoginModal}
+    >
       {user ? 'LOGOUT' : 'LOGIN'}
       {/* <img src={`${publicUrl}/images/user.svg`} alt="login" /> */}
     </StyledLoginBtn>

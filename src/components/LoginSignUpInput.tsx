@@ -40,6 +40,7 @@ const LoginSignUpInput: React.FC<InputFieldProps> = ({
       onChange={onChange}
       required
       autoComplete="off"
+      className="kanit-medium"
     />
   </StyledLoginSignUpInput>
 );

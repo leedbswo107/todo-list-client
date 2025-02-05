@@ -80,7 +80,7 @@ const CreateTodo: React.FC = () => {
   if (!modalStatus) return null;
   return (
     <StyledCreateTodo isNightMode={isNightMode}>
-      <div className="createModal">
+      <div className="createModal kanit-medium">
         <h3>NEW NOTE</h3>
         <form onSubmit={handleTodoSubmit}>
           <input

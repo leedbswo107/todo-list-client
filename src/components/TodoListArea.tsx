@@ -37,7 +37,7 @@ const TodoListArea: React.FC = () => {
       if (updatedUser) {
         try {
           const list: TodoItem[] = await load(updatedUser.id);
-          setData(list);
+          setData(list.reverse());
         } catch (error) {
           console.error('Error loading todos:', error);
         }

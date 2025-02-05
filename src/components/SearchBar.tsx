@@ -29,12 +29,13 @@ const StyledSearchBar = styled.form<{ isNightMode: boolean }>`
     background: #6c63ff;
     position: absolute;
     top: 0px;
-    right: 8px;
+    right: 6px;
   }
   input {
     flex: 1;
     outline: none;
     background: none;
+    margin-left: 4px;
     color: ${({ isNightMode }) => (isNightMode ? 'white' : '#6c63ff')};
   }
   input::placeholder {
@@ -60,13 +61,14 @@ const SearchBar: React.FC = () => {
   const { isNightMode } = useNightModeStore();
   return (
     <StyledSearchBar isNightMode={isNightMode}>
-      <label>Note</label>
+      <label className="kanit-medium">Note</label>
       <input
         type="search"
         id="user-search"
         name="query"
         aria-label="사이트 내용을 통해 검색"
         placeholder="Search note..."
+        className="kanit-medium"
       />
       <button type="submit">
         <img src={`${publicUrl}/images/searchPurple.svg`} alt="search" />

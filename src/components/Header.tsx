@@ -7,7 +7,7 @@ const StyledHeader = styled.header`
 `;
 
 const Header: React.FC = () => {
-  return <StyledHeader>TODO LIST</StyledHeader>;
+  return <StyledHeader className="kanit-medium">TODO LIST</StyledHeader>;
 };
 
 export default Header;

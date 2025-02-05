@@ -15,7 +15,7 @@ const TopControls: React.FC = () => {
   return (
     <StyledTopControls>
       <SearchBar />
-      <Category />
+      {/* <Category /> */}
       <LoginBtn />
       <NightModeToggleBtn />
     </StyledTopControls>

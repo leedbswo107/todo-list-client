@@ -20,7 +20,9 @@ const StyledLoginSignUp = styled.button`
   }
 `;
 const LoginSignUpBtn: React.FC<ButtonProps> = ({ text, onClick }) => (
-  <StyledLoginSignUp onClick={onClick}>{text}</StyledLoginSignUp>
+  <StyledLoginSignUp onClick={onClick} className="kanit-medium">
+    {text}
+  </StyledLoginSignUp>
 );
 
 export default LoginSignUpBtn;

@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import useEditModalStore from 'stores/useEditModalStore';
 import useEditTodoStore from 'stores/useEditTodoStore';
 import useModalStore from 'stores/useModalStore';
+import useNightModeStore from 'stores/useNightModeStore';
 import useUserStore from 'stores/useUserStore';
 import { styled } from 'styled-components';
 
-const StyledEditTodo = styled.div`
+const StyledEditTodo = styled.div<{ isNightMode: boolean }>`
   display: flex;
   justify-content: center;
   position: fixed;
@@ -29,7 +30,9 @@ const StyledEditTodo = styled.div`
     border: 1px solid #534cc2;
     border-radius: 16px;
     padding: 18px 36px;
-    background-color: white;
+    background-color: ${({ isNightMode }) =>
+      isNightMode ? '#252525' : 'white'};
+    color: ${({ isNightMode }) => (isNightMode ? 'white' : 'black')};
     top: 10%;
     z-index: 100;
   }
@@ -37,6 +40,9 @@ const StyledEditTodo = styled.div`
     border: 1px solid #534cc2;
     border-radius: 5px;
     width: 100%;
+    background-color: ${({ isNightMode }) =>
+      isNightMode ? '#252525' : 'white'};
+    color: ${({ isNightMode }) => (isNightMode ? 'white' : 'black')};
     padding: 8px 16px;
   }
   .buttonArea {
@@ -66,9 +72,8 @@ const EditTodo: React.FC = () => {
   const { editModalStatus, closeModal } = useEditModalStore();
   const { edit } = useTodo();
   const { todoId, content } = useEditTodoStore();
-  // const { userId } = useUserStore();
-  // const user = useUserStore((state) => state.user);
   const [editContent, setEditContent] = useState('');
+  const { isNightMode } = useNightModeStore();
   const handleTodoSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     edit(todoId, editContent);
@@ -76,8 +81,8 @@ const EditTodo: React.FC = () => {
   };
   if (!editModalStatus) return null;
   return (
-    <StyledEditTodo>
-      <div className="createModal">
+    <StyledEditTodo isNightMode={isNightMode}>
+      <div className="createModal kanit-medium">
         <h3>EDIT NOTE</h3>
         <form onSubmit={handleTodoSubmit}>
           <input
