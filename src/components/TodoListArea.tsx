@@ -11,6 +11,7 @@ const StyledTodoListArea = styled.ul`
   height: 650px;
   overflow: hidden;
   overflow-y: scroll;
+  scrollbar-width: none;
   margin: auto;
   margin-top: 30px;
 `;
